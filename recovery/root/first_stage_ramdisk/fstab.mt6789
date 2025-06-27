@@ -1,11 +1,11 @@
-# 1 "vendor/mediatek/proprietary/hardware/fstab/mt6789/fstab.in.emmc"
+# 1 "vendor/mediatek/proprietary/hardware/fstab/mt6789/fstab.in.mt6789"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 341 "<built-in>" 3
 # 1 "<command line>" 1
 # 1 "<built-in>" 2
-# 1 "vendor/mediatek/proprietary/hardware/fstab/mt6789/fstab.in.emmc" 2
-# 156 "vendor/mediatek/proprietary/hardware/fstab/mt6789/fstab.in.emmc"
+# 1 "vendor/mediatek/proprietary/hardware/fstab/mt6789/fstab.in.mt6789" 2
+# 156 "vendor/mediatek/proprietary/hardware/fstab/mt6789/fstab.in.mt6789"
 system /system ext4 ro wait,slotselect,avb=vbmeta_system,logical,first_stage_mount,avb_keys=/avb/q-gsi.avbpubkey:/avb/r-gsi.avbpubkey:/avb/s-gsi.avbpubkey
 system_ext /system_ext ext4 ro wait,slotselect,avb=vbmeta_system,logical,first_stage_mount,avb_keys=/avb/q-gsi.avbpubkey:/avb/r-gsi.avbpubkey:/avb/s-gsi.avbpubkey
 
@@ -26,7 +26,7 @@ odm_dlkm /odm_dlkm ext4 ro wait,slotselect,avb,logical,first_stage_mount
 
 /dev/block/by-name/metadata /metadata ext4 noatime,nosuid,nodev,discard wait,check,formattable,first_stage_mount
 
-/dev/block/by-name/userdata /data f2fs noatime,nosuid,nodev,discard,noflush_merge,fsync_mode=nobarrier,reserve_root=134217,resgid=1065,inlinecrypt wait,check,formattable,quota,latemount,resize,reservedsize=128m,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v2,keydirectory=/metadata/vold/metadata_encryption,fsverity
+/dev/block/by-name/userdata /data f2fs noatime,nosuid,nodev,discard,noflush_merge,fsync_mode=nobarrier,reserve_root=134217,resgid=1065,inlinecrypt wait,check,formattable,quota,latemount,resize,reservedsize=128m,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption,fsverity
 
 
 
@@ -51,8 +51,8 @@ odm_dlkm /odm_dlkm ext4 ro wait,slotselect,avb,logical,first_stage_mount
 
 /dev/block/by-name/nvram /nvram emmc defaults defaults
 /dev/block/by-name/proinfo /proinfo emmc defaults defaults
-/dev/block/by-name/lk /bootloader emmc defaults defaults
-/dev/block/by-name/lk2 /bootloader2 emmc defaults defaults
+/dev/block/by-name/lk1 /lk1 emmc defaults defaults
+/dev/block/by-name/bootloader2 /bootloader2 emmc defaults defaults
 /dev/block/by-name/para /para emmc defaults defaults
 /dev/block/by-name/misc /misc emmc defaults defaults
 
@@ -80,15 +80,15 @@ odm_dlkm /odm_dlkm ext4 ro wait,slotselect,avb,logical,first_stage_mount
 /dev/block/by-name/scp2 /scp2 emmc defaults defaults
 
 
-/dev/block/by-name/sspm_1 /sspm_1 emmc defaults defaults
-/dev/block/by-name/sspm_2 /sspm_2 emmc defaults defaults
+/dev/block/by-name/sspm1 /sspm1 emmc defaults defaults
+/dev/block/by-name/sspm2 /sspm2 emmc defaults defaults
 
 
-/dev/block/by-name/dpm_1 /dpm_1 emmc defaults defaults
-/dev/block/by-name/dpm_2 /dpm_2 emmc defaults defaults
+/dev/block/by-name/dpm1 /dpm1 emmc defaults defaults
+/dev/block/by-name/dpm2 /dpm2 emmc defaults defaults
 
-/dev/block/by-name/mcupm_1 /mcupm_1 emmc defaults defaults
-/dev/block/by-name/mcupm_2 /mcupm_2 emmc defaults defaults
+/dev/block/by-name/mcupm1 /mcupm1 emmc defaults defaults
+/dev/block/by-name/mcupm2 /mcupm2 emmc defaults defaults
 
 
 
@@ -103,6 +103,15 @@ odm_dlkm /odm_dlkm ext4 ro wait,slotselect,avb,logical,first_stage_mount
 
 /dev/block/by-name/gz1 /gz1 emmc defaults defaults
 /dev/block/by-name/gz2 /gz2 emmc defaults defaults
+/dev/block/by-name/ccu /ccu emmc defaults defaults
+/dev/block/by-name/vcp /vcp emmc defaults defaults
+/dev/block/by-name/gpueb /gpueb emmc defaults defaults
+/dev/block/by-name/mcf_ota /mcf_ota emmc defaults defaults
+/dev/block/by-name/vendor_boot /vendor_boot emmc defaults defaults
+/dev/block/by-name/mvpu_algo1 /mvpu_algo1 emmc defaults defaults
+/dev/block/by-name/mvpu_algo2 /mvpu_algo2 emmc defaults defaults
+/dev/block/by-name/apusys1 /apusys1 emmc defaults defaults
+/dev/block/by-name/apusys2 /apusys2 emmc defaults defaults
 
 /dev/block/by-name/spmfw /spmfw emmc defaults defaults
 
