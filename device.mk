@@ -1,35 +1,52 @@
-#
-# Copyright (C) 2024 The Android Open Source Project
-# Copyright (C) 2024 SebaUbuntu's TWRP device tree generator
-#
-# SPDX-License-Identifier: Apache-2.0
-#
+PRODUCT_SHIPPING_API_LEVEL := 31
+DEVICE_PATH := device/alldocube/T1030M
 
-LOCAL_PATH := device/alldocube/T1030M
 # A/B
+AB_OTA_UPDATER := true
+AB_OTA_PARTITIONS += \
+    boot \
+    dtbo \
+    system \
+    product \
+    vendor \
+    odm \
+    odm_dlkm \
+    vbmeta \
+    vendor_boot \
+    vendor_dlkm \
+    vbmeta_system \
+    vbmeta_vendor
+    
+PRODUCT_PACKAGES += \
+    android.hardware.boot@1.0-impl \
+    android.hardware.boot@1.0-service \
+    android.hardware.boot@1.0.recovery \
+    bootctrl.mt6789 \
+    bootctrl.mt6789.recovery 
+
+PRODUCT_PACKAGES += \
+    bootctrl
+    
+PRODUCT_PACKAGES += \
+    update_engine \
+    update_engine_sideload \
+    update_verifier \
+    checkpoint_gc
+
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
-    POSTINSTALL_PATH_system=system/bin/otapreopt_script \
+    POSTINSTALL_PATH_system=system/bin/mtk_plpath_utils \
     FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=true
 
-# Boot control HAL
-PRODUCT_PACKAGES += \
-    android.hardware.boot@1.0-impl \
-    android.hardware.boot@1.0-service
+AB_OTA_POSTINSTALL_CONFIG += \
+    RUN_POSTINSTALL_vendor=true \
+    POSTINSTALL_PATH_vendor=bin/checkpoint_gc \
+    FILESYSTEM_TYPE_vendor=ext4 \
+    POSTINSTALL_OPTIONAL_vendor=true
 
-PRODUCT_PACKAGES += \
-    bootctrl.mt6789
+# Dynamic
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-PRODUCT_STATIC_BOOT_CONTROL_HAL := \
-    bootctrl.mt6789 \
-    libgptutils \
-    libz \
-    libcutils
-
-PRODUCT_PACKAGES += \
-    otapreopt_script \
-    cppreopts.sh \
-    update_engine \
-    update_verifier \
-    update_engine_sideload
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += $(DEVICE_PATH)

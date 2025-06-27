@@ -1,9 +1,8 @@
-# Android device tree for Alldocube iPlay 50 Pro (T1030M)
+# Android device tree for alldocube iplay50 pro (T1030M)
 
 ```
 #
-# Copyright (C) 2024 The Android Open Source Project
-# Copyright (C) 2024 SebaUbuntu's TWRP device tree generator
+# Copyright (C) 2025 The Android Open Source Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
