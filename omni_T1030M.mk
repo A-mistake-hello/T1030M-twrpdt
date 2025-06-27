@@ -11,7 +11,7 @@ $(call inherit-product, device/alldocube/T1030M/device.mk)
 
 # Device identifier
 PRODUCT_DEVICE := T1030M # 设备型号
-PRODUCT_NAME := twrp_T1030M # 设备名称
+PRODUCT_NAME := omni_T1030M # 设备名称
 PRODUCT_BRAND := Alldocube # 自定义品牌，如果有
 PRODUCT_MODEL := iPlay 50 Pro # 产品最终用户可见名称
 PRODUCT_MANUFACTURER := alldocube # 制造商
